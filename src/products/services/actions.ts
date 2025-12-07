@@ -17,3 +17,21 @@ export const getProduct = async (id: number): Promise<Product> => {
 
   return data;
 };
+
+
+export interface ProductLike {
+    id?:          number;
+    title:       string;
+    price:       number;
+    description: string;
+    category:    string;
+    image:       string;
+}
+
+
+
+
+export const createProduct  = async(product: ProductLike) =>{
+  const resp = productsApi.post<Product>(`/products`, product)
+  return resp
+}

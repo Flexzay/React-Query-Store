@@ -1,5 +1,6 @@
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useProductMutation } from "../hooks/useProductMutation";
 
 interface FromInputs {
   title: string;
@@ -10,10 +11,38 @@ interface FromInputs {
 }
 
 export const NewProduct = () => {
-  const { control, handleSubmit } = useForm<FromInputs>({});
+
+const productMutation = useProductMutation()
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const { control, handleSubmit } = useForm<FromInputs>({
+
+    defaultValues: {
+      title: "",
+      price: 0,
+      description: "",
+      category: "Men's clothing",
+      image:""
+      
+    }
+
+    
+
+  });
 
   const onSubmit: SubmitHandler<FromInputs> = (data) => {
-    console.log(data);
+    productMutation.mutate(data)
   };
 
   return (
